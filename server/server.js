@@ -14,7 +14,7 @@ app.get('/api/users', (req, res) => {
     });
 });
 
-app.get('/api/reviews/:restaurantId', (req, res) => {
+app.get('/api/restaurants/:restaurantId/reviews', (req, res) => {
   db.Review.findAll({
     where: {
       restaurantId: req.params.restaurantId
