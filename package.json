@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "review_module",
   "version": "",
   "description": "",
   "author": "",
@@ -8,8 +8,11 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "seed": "node seeder.js"
   },
   "dependencies": {
+    "mysql2": "^1.6.5",
+    "sequelize": "^4.42.0"
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
