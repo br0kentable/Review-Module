@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "nodemon server/server.js",
-    "seed": "node seeder.js"
+    "seed": "node seeding.js"
   },
   "dependencies": {
     "express": "^4.16.4",
