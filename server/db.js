@@ -1,8 +1,9 @@
+const config = require('../config.json');
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('Review_Module', 'root', 'student', {
+const sequelize = new Sequelize('Review_Module', config.database.username, config.database.password, {
   host: 'localhost',
   dialect: 'mysql'
-}); 
+});
 
 const Review = sequelize.define('review', {
   userId: Sequelize.INTEGER,
@@ -31,7 +32,7 @@ const User = sequelize.define('user', {
 User.hasMany(Review, { foreignKey: 'userId' });
 Review.belongsTo(User, { foreignKey: 'userId' });
 
-sequelize 
+sequelize
   .authenticate()
   .then(() => {
     console.log('Connected to database');
