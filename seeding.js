@@ -1,4 +1,5 @@
 var db = require('./server/db.js');
+var restaurantsJson = require('./restaurant_ID.json');
 
 
 //USERS INFO
@@ -91,7 +92,7 @@ var randReview = [
 
 var reviewText = () => randReview[Math.floor(Math.random() * (randReview.length))];
 
-var randRestaurantId = 'thfUjkN4Tv';//get request to restaurant module later
+var randRestaurantId = ()=>restaurantsJson[Math.floor(Math.random() * (restaurantsJson.length))].ID;
 
 var randUserId = () => Math.floor(Math.random() * 50) + 1; //will be creating 50 users
 
@@ -186,11 +187,6 @@ var counterReview = 0;
 
 var insertData = (username) => {
   if (counterUser < 50) {
-    // db.User
-    //   .findOne({
-    //     where: { username: username }
-    //   })
-    //   .then((user) => {
     db.User.create({
       username: username,
       location: userLocation(),
@@ -200,11 +196,10 @@ var insertData = (username) => {
         counterUser++;
         insertData(userNameFull());
       });
-    // })
   } else if (counterUser >= 50 && counterReview < 150) {
     db.Review.create({
       userId: randUserId(),
-      restaurantId: randRestaurantId,
+      restaurantId: randRestaurantId(),
       reviewDate: randDate(),
       text: reviewText(),
       tags: randTags(),

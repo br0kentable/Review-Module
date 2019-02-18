@@ -3,9 +3,7 @@ const app = express();
 const db = require('./db.js');
 const port = 1337;
 
-app.get('/', (req, res) => {
-  res.send('test');
-});
+app.use(express.static('./public/dist'));
 
 app.get('/api/users', (req, res) => {
   db.User.findAll()
