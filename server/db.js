@@ -2,7 +2,8 @@ const config = require('../config.json');
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('Review_Module', config.database.username, config.database.password, {
   host: 'localhost',
-  dialect: 'mysql'
+  dialect: 'mysql',
+  logging: false
 });
 
 const Review = sequelize.define('review', {
