@@ -1,6 +1,4 @@
-var db = require('./server/db.js');
 var restaurantsJson = require('./restaurant_ID.json');
-
 
 //USERS INFO
 var randNameFirst = [
@@ -180,42 +178,20 @@ var randNoiseRatings = [1, 1, 2, 2, 2, 2, 3];
 
 var randNoise = () => randNoiseRatings[Math.floor(Math.random() * (randNoiseRatings.length))];
 
-
-//inserting USERS to the database
-var counterUser = 0;
-var counterReview = 0;
-
-var insertData = (username) => {
-  if (counterUser < 50) {
-    db.User.create({
-      username: username,
-      location: userLocation(),
-      vip: userVip()
-    })
-      .then(() => {
-        counterUser++;
-        insertData(userNameFull());
-      });
-  } else if (counterUser >= 50 && counterReview < 150) {
-    db.Review.create({
-      userId: randUserId(),
-      restaurantId: randRestaurantId(),
-      reviewDate: randDate(),
-      text: reviewText(),
-      tags: randTags(),
-      foodScore: randFood(),
-      serviceScore: randService(),
-      ambienceScore: randAmbience(),
-      valueScore: randValue(),
-      overallScore: randOverall(),
-      noise: randNoise(),
-      recommend: recommendation()
-    })
-      .then(() => {
-        counterReview++;
-        insertData(userNameFull());
-      });
-  }
+module.exports = {
+  userNameFull,
+  userLocation,
+  userVip,
+  reviewText,
+  randRestaurantId,
+  randUserId,
+  randDate,
+  randTags,
+  randFood,
+  randService,
+  randAmbience,
+  randValue,
+  randOverall,
+  recommendation,
+  randNoise
 };
-
-insertData(userNameFull());
