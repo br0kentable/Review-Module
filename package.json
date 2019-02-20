@@ -10,6 +10,7 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "webpack --config webpack.config.js --watch",
+    "test": "jest",
     "seed": "node seeding/seedingScript.js"
   },
   "dependencies": {
