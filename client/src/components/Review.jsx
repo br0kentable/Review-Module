@@ -3,34 +3,45 @@ import User from './User.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Review = (props) => {
-  var stars = []
+  var stars = [];
   for (var i = 0; i < props.scoreOverall; i++) {
-    stars.push(<FontAwesomeIcon key={"score" + i} icon="star" className="filledScore" />);
+    stars.push(<FontAwesomeIcon key={'score' + i} icon="star" className="filledScore" />);
   }
-  for (var i = 0; i < (5 - props.scoreOverall); i++){
-    stars.push(<FontAwesomeIcon key={"emptyScore" + i} icon="star" className="emptyScore" />);
+  for (var i = 0; i < (5 - props.scoreOverall); i++) {
+    stars.push(<FontAwesomeIcon key={'emptyScore' + i} icon="star" className="emptyScore" />);
+  }
+  var currentDate = props.date;
+  var currentDateArray = props.date.split('-');
+  var today = new Date();
+  var dinedOn = today.getDate() - Number(currentDateArray[2]);
+  if (today.getFullYear() - Number(currentDateArray[0]) === 0 && (today.getMonth() + 1) - Number(currentDateArray[1]) === 0 && dinedOn <= 7 && dinedOn > 1) {
+    currentDate = `Dined ${dinedOn} days ago`;
+  } else if (dinedOn === 1) {
+    currentDate = 'Dined 1 day ago';
+  } else if (dinedOn === 0) {
+    currentDate = 'Dined today';
   }
   return (
-    <article>
+    <article className="userAndReview">
       <User />
-      <div id="reviewBody">
+      <div id="reviewBody" className="reviewBody">
         <div id="reviewScores">
-          <div id="reviewStarsDate">
+          <div id="reviewStarsDate" className="reviewStarsAndDate">
             <div id="reviewStars">
               {stars}
             </div>
             <div id="reviewDate">
-              <span id="date">{props.date}</span>
+              <span id="date">{currentDate}</span>
             </div>
           </div>
           <div id="otherScores">
-            <span id="scoreOverallText">Overall </span>
-            <span id="scoreOverallNumber">{props.scoreOverall} </span>
-            <span id="scoreFoodText">Food </span>
-            <span id="scoreFoodNumber">{props.scoreFood} </span>
-            <span id="scoreServiceText">Service </span>
-            <span id="scoreServiceNumber">{props.scoreService} </span>
-            <span id="scoreAmbienceText">Ambience </span>
+            <span id="scoreOverallText" className="reviewText">Overall </span>
+            <span id="scoreOverallNumber" className="reviewScore">{props.scoreOverall}</span>
+            <span id="scoreFoodText" className="reviewText">Food </span>
+            <span id="scoreFoodNumber" className="reviewScore">{props.scoreFood}</span>
+            <span id="scoreServiceText" className="reviewText">Service </span>
+            <span id="scoreServiceNumber" className="reviewScore">{props.scoreService}</span>
+            <span id="scoreAmbienceText" className="reviewText">Ambience </span>
             <span id="scoreAmbienceNumber">{props.scoreAmbience}</span>
           </div>
         </div>
@@ -41,7 +52,7 @@ const Review = (props) => {
       <hr />
     </article>
   );
-}
+};
 
 
 export default Review;

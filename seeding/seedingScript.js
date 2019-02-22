@@ -1,5 +1,5 @@
 const db = require('../server/db.js');
-const seedingData = require('../seeding/seedingData.js');
+const seedingData = require('./seedingData.js');
 
 //inserting USERS to the database
 var counterUser = 0;

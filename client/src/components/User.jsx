@@ -1,7 +1,7 @@
 import React from 'react';
 
 const User = (props) => (
-  <div>
+  <div className="user">
     user component inside review
   </div>
 );
