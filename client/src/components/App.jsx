@@ -1,4 +1,10 @@
 import React from 'react';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+// import { faStar as emptyFaStar } from '@fortawesome/free-regular-svg-icons';
+library.add(faStar);
+// library.add(emptyFaStar);
 import Review from './Review.jsx';
 
 class App extends React.Component {
@@ -10,8 +16,9 @@ class App extends React.Component {
   }
 
   render() {
-    var mappedReviews = this.state.reviews.map((review) =>
+    var mappedReviews = this.state.reviews.map((review, i) =>
       <Review
+        key={'review' + i}
         date={review.reviewDate}
         scoreOverall={review.overallScore}
         scoreFood={review.foodScore}
