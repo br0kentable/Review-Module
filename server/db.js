@@ -42,11 +42,11 @@ sequelize
     console.error('Unable to connect to database', err);
   });
 
-// User.sync({ force: true }).then(() => {
+// User.sync().then(() => {
 //   console.log('User table synced');
 // });
 
-// Review.sync({ force: true }).then(() => {
+// Review.sync().then(() => {
 //   console.log('Review table synced');
 // });
 

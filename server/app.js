@@ -4,6 +4,10 @@ const db = require('./db.js');
 
 app.use(express.static('./public/dist'));
 
+app.get('/', (req, res) => {
+  res.send('test');
+});
+
 app.get('/api/users', (req, res) => {
   db.User.findAll()
     .then((users) => {
@@ -29,7 +33,7 @@ app.get('/api/restaurants/reviews', (req, res) => {
     });
 });
 
-app.get('*', function(req, res){
+app.get('*', function (req, res) {
   res.status(404).send(`Use endpoints '/api/users', or '/api/restaurants/[restaurant ID]/reviews', or '/api/restaurants/reviews'`);
 });
 
