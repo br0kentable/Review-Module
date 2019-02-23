@@ -49,7 +49,6 @@ const Review = (props) => {
           <p>{props.text}</p>
         </div>
       </div>
-      <hr />
     </article>
   );
 };
