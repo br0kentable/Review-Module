@@ -10,7 +10,8 @@ var insertData = (username) => {
     db.User.create({
       username: username,
       location: seedingData.userLocation(),
-      vip: seedingData.userVip()
+      vip: seedingData.userVip(),
+      reviewNumber: seedingData.userReviewNumber()
     })
       .then(() => {
         counterUser++;
@@ -35,6 +36,8 @@ var insertData = (username) => {
         counterReview++;
         insertData(seedingData.userNameFull());
       });
+  } else if (counterUser >= 50 && counterReview >= 150){
+    process.exit();
   }
 };
 

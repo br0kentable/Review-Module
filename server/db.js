@@ -27,26 +27,28 @@ const User = sequelize.define('user', {
     defaultValue: 'BrokenTableDiner'
   },
   location: Sequelize.STRING,
-  vip: Sequelize.STRING
+  vip: Sequelize.STRING,
+  reviewNumber: Sequelize.INTEGER
 });
 
 User.hasMany(Review, { foreignKey: 'userId' });
 Review.belongsTo(User, { foreignKey: 'userId' });
 
 sequelize
-  .authenticate()
+  .sync()
   .then(() => {
-    console.log('Connected to database');
+    console.log('Connected to database, tables synced');
   })
   .catch(err => {
     console.error('Unable to connect to database', err);
-  });
+  })
 
-// User.sync().then(() => {
+
+// User.sync({force: true}).then(() => {
 //   console.log('User table synced');
 // });
 
-// Review.sync().then(() => {
+// Review.sync({force: true}).then(() => {
 //   console.log('Review table synced');
 // });
 
