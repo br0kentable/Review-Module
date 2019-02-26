@@ -17,13 +17,13 @@ const Review = (props) => {
   if (today.getFullYear() - Number(currentDateArray[0]) === 0 && (today.getMonth() + 1) - Number(currentDateArray[1]) === 0 && dinedOn <= 7 && dinedOn > 1) {
     currentDate = `Dined ${dinedOn} days ago`;
   } else if (dinedOn === 1) {
-    currentDate = 'Dined 1 day ago';
+    currentDate = 'Dined a day ago';
   } else if (dinedOn === 0) {
     currentDate = 'Dined today';
   }
   return (
     <article className="userAndReview">
-      <User />
+      <User userData={props.user}/>
       <div id="reviewBody" className="reviewBody">
         <div id="reviewScores">
           <div id="reviewStarsDate" className="reviewStarsAndDate">

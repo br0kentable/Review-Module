@@ -19,7 +19,11 @@ app.get('/api/restaurants/:restaurantId/reviews', (req, res) => {
   db.Review.findAll({
     where: {
       restaurantId: req.params.restaurantId
-    }
+    },
+    include: [{
+      model: db.User,
+      attributes: ['id', 'username', 'location', 'vip', 'reviewNumber']
+    }]
   })
     .then((reviews) => {
       res.send(reviews);

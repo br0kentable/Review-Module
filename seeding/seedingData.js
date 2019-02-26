@@ -65,6 +65,8 @@ var userLocation = () => randLocation[Math.floor(Math.random() * (randLocation.l
 var userVipStatus = ['No', 'Yes'];
 var userVip = () => userVipStatus[Math.floor(Math.random() * (userVipStatus.length))];
 
+var userReviewNumber = () => Math.floor(Math.random() * 25);
+
 
 //REVIEWS INFO
 var randReview = [
@@ -182,6 +184,7 @@ module.exports = {
   userNameFull,
   userLocation,
   userVip,
+  userReviewNumber,
   reviewText,
   randRestaurantId,
   randUserId,
