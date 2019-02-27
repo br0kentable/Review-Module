@@ -82,7 +82,7 @@ class App extends React.Component {
         user={review.user} />
     );
     return (
-      <div>
+      <div className="reviewModuleContainer container">
         <h3>What {this.state.reviews.length} People Are Saying</h3>
         <hr/>
         <OverallScores reviews={this.state.reviews}/>

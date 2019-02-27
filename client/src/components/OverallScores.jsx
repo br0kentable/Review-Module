@@ -46,32 +46,33 @@ const OverallScores = (props) => {
   for (var i = Number(overallMain); i > 0; i--) {
     if (i >= 1) {
       overallStars.push(
-        <FontAwesomeIcon key={'overallScore' + i} icon="star" className="filledScore" />
+        <FontAwesomeIcon key={'overallScore' + i} icon="star" className="filledScore  starTop" />
       )
     } else if (i < 1 && i >= 0.25) {
       overallStars.push(
-        <FontAwesomeIcon key={'overallScore' + i} icon="star-half-alt" className="filledScore" />
+        <FontAwesomeIcon key={'overallScore' + i} icon="star-half-alt" className="filledScore starTop" />
       )
     }
   }
 
   for (var i = 0; i < (5 - Math.ceil(overallMain)); i++) {
     overallStars.push(
-      <FontAwesomeIcon key={'overallScore' + i} icon={["far", "star"]} className="emptyScore" />
+      <FontAwesomeIcon key={'overallScore' + i} icon={["far", "star"]} className="emptyScore starTop" />
     )
   }
-  console.log(overallRecommend)
 
   return (
     <div className="overallScoresContainer">
       <div className="overallScoresRatings">
-        <div className="overallScoresRatingsSubtitle">Overall ratings and reviews</div>
-        <div className="overallScoresRatingsDescription">Reviews can only be made by diners who have eaten at this restaurant</div>
-      </div>
-      <div className="overallScoresStarsContainer">
-        <div className="overallScoresStars">
-          {overallStars}
-          <div>
+        <div>
+          <div className="overallScoresRatingsSubtitle">Overall ratings and reviews</div>
+          <div className="overallScoresRatingsDescription">Reviews can only be made by diners who have eaten at this restaurant</div>
+        </div>
+        <div className="overallScoresStarsContainer">
+          <div className="overallScoresStars">
+            {overallStars}
+          </div>
+          <div className="overallScoresLabelContainer">
             <span className="overallScoresStarsNumber">{overallMain}</span>
             <span className="overallScoresStarsLabel">{' based on recent ratings.'}</span>
           </div>
@@ -94,7 +95,7 @@ const OverallScores = (props) => {
             <div className="fsavLabel">{'Value'}</div>
           </div>
         </div>
-        <div className="overallScoresNoise">
+        <div className="overallScoresNoise noiseRecommend">
           <div className="overScoresNoiseIcon"></div>
           <div className="overallScoresNoiseScore">
             <FontAwesomeIcon icon="signal" className="noiseIcon" />
@@ -102,7 +103,7 @@ const OverallScores = (props) => {
             <span className="overallScoresNoiseScore">{overallNoise}</span>
           </div>
         </div>
-        <div className="overallScoreRecommend">
+        <div className="overallScoreRecommend noiseRecommend">
           <div className="overallScoresRecommendScoreLabel">
             <FontAwesomeIcon icon={["far", "thumbs-up"]} className="thumbIcon" />
             {` ${overallRecommend}% of people `}
@@ -111,34 +112,36 @@ const OverallScores = (props) => {
         </div>
       </div>
       <div className="overallScoresBarsContainer">
-        <div className="overallScoreBars5">
-          <span>{'5'}</span>
-          <div className="overallScoresBars">
-            <span className="overallScoresBarsInner" style={{ width: (overallMainBars[5] / props.reviews.length) * 100 + '%' }}></span>
+        <div className="overallScoreBarsContainerInner">
+          <div className="overallScoreBars">
+            <span>{'5'}</span>
+            <div className="overallScoresBarsInner">
+              <span className="overallScoresBarsColor" style={{ width: (overallMainBars[5] / props.reviews.length) * 100 + '%' }}></span>
+            </div>
           </div>
-        </div>
-        <div className="overallScoreBars5">
-          <span>{'4'}</span>
-          <div className="overallScoresBars">
-            <span className="overallScoresBarsInner" style={{ width: (overallMainBars[4] / props.reviews.length) * 100 + '%' }}></span>
+          <div className="overallScoreBars">
+            <span>{'4'}</span>
+            <div className="overallScoresBarsInner">
+              <span className="overallScoresBarsColor" style={{ width: (overallMainBars[4] / props.reviews.length) * 100 + '%' }}></span>
+            </div>
           </div>
-        </div>
-        <div className="overallScoreBars5">
-          <span>{'3'}</span>
-          <div className="overallScoresBars">
-            <span className="overallScoresBarsInner" style={{ width: (overallMainBars[3] / props.reviews.length) * 100 + '%' }}></span>
+          <div className="overallScoreBars">
+            <span>{'3'}</span>
+            <div className="overallScoresBarsInner">
+              <span className="overallScoresBarsColor" style={{ width: (overallMainBars[3] / props.reviews.length) * 100 + '%' }}></span>
+            </div>
           </div>
-        </div>
-        <div className="overallScoreBars5">
-          <span>{'2'}</span>
-          <div className="overallScoresBars">
-            <span className="overallScoresBarsInner" style={{ width: (overallMainBars[2] / props.reviews.length) * 100 + '%' }}></span>
+          <div className="overallScoreBars">
+            <span>{'2'}</span>
+            <div className="overallScoresBarsInner">
+              <span className="overallScoresBarsColor" style={{ width: (overallMainBars[2] / props.reviews.length) * 100 + '%' }}></span>
+            </div>
           </div>
-        </div>
-        <div className="overallScoreBars5">
-          <span>{'1'}</span>
-          <div className="overallScoresBars">
-            <span className="overallScoresBarsInner" style={{ width: (overallMainBars[1] / props.reviews.length) * 100 + '%' }}></span>
+          <div className="overallScoreBars">
+            <span>{'1'}</span>
+            <div className="overallScoresBarsInner">
+              <span className="overallScoresBarsColor" style={{ width: (overallMainBars[1] / props.reviews.length) * 100 + '%' }}></span>
+            </div>
           </div>
         </div>
       </div>
