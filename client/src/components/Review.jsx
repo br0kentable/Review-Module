@@ -8,7 +8,7 @@ const Review = (props) => {
     stars.push(<FontAwesomeIcon key={'score' + i} icon="star" className="filledScore" />);
   }
   for (var i = 0; i < (5 - props.scoreOverall); i++) {
-    stars.push(<FontAwesomeIcon key={'emptyScore' + i} icon="star" className="emptyScore" />);
+    stars.push(<FontAwesomeIcon key={'emptyScore' + i} icon={["far", "star"]} className="emptyScore" />);
   }
   var currentDate = props.date;
   var currentDateArray = props.date.split('-');

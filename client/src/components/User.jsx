@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const User = (props) => {
   var vipStatus = props.userData.vip === 'Yes' ? 'VIP' : '';
@@ -13,7 +14,10 @@ const User = (props) => {
         </div>
         <span className="userLocation">{props.userData.location}</span>
         <div className="userReviewNumberOuter">
-          <span className="userReviewNumberInner">{props.userData.reviewNumber}</span>
+          <span className="userReviewNumberInner">
+          <FontAwesomeIcon icon={["far", "comment-alt"]} className="commentsCount" />
+          {` ${props.userData.reviewNumber} Reviews`}
+          </span>
         </div>
       </div>
     </div>
