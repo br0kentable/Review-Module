@@ -1,9 +1,10 @@
 import React from 'react';
+import axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalfAlt, faSignal } from '@fortawesome/free-solid-svg-icons';
 import { faStar as emptyFaStar, faCommentAlt, faThumbsUp } from '@fortawesome/free-regular-svg-icons';
-library.add(faStar,faStarHalfAlt, faCommentAlt, faSignal, emptyFaStar, faThumbsUp);
+library.add(faStar, faStarHalfAlt, faCommentAlt, faSignal, emptyFaStar, faThumbsUp);
 import Review from './Review.jsx';
 import TagsSorting from './TagsSorting.jsx';
 import OverallScores from './OverallScores.jsx';
@@ -40,21 +41,37 @@ class App extends React.Component {
       checkedTags: []
     };
     this.filterByTag = this.filterByTag.bind(this);
+    this.filterBySelect = this.filterBySelect.bind(this);
   }
 
   filterByTag(e) {
     if (e.target.checked) {
-      // console.log(e.target.checked)
       this.setState({
         checkedTags: this.state.checkedTags.concat([e.target.labels[0].id])
       });
     } else if (e.target.checked === false) {
       var removeTag = this.state.checkedTags.slice();
       removeTag.splice(removeTag.indexOf(e.target.labels[0].id), 1);
-      // console.log(e.target.labels[0].id)
       this.setState({
         checkedTags: removeTag
       });
+    }
+  }
+
+  filterBySelect(e) {
+    console.log(e.target.value);
+    if (e.target.value === 'Lowest rating') {
+      this.setState({
+        filteredReviews: this.state.filteredReviews.sort((a, b) => a.overallScore - b.overallScore)
+      });
+    } else if (e.target.value === 'Highest rating') {
+      this.setState({
+        filteredReviews: this.state.filteredReviews.sort((a, b) => b.overallScore - a.overallScore)
+      });
+    } else if (e.target.value === 'Newest') {
+      this.setState({
+        filteredReviews: this.state.filteredReviews.sort((a, b) => new Date(b.reviewDate) - new Date(a.reviewDate))
+      })
     }
   }
 
@@ -68,6 +85,11 @@ class App extends React.Component {
       });
     }
   }
+
+
+  // componentDidMount(){
+  //   axios.get('/api/restaurants')
+  // }
 
   render() {
     var mappedReviews = this.state.filteredReviews.map((review, i) =>
@@ -84,9 +106,13 @@ class App extends React.Component {
     return (
       <div className="reviewModuleContainer container">
         <h3>What {this.state.reviews.length} People Are Saying</h3>
-        <hr/>
-        <OverallScores reviews={this.state.reviews}/>
-        <TagsSorting tagList={this.state.popularTags} filterByTag={this.filterByTag} reviewNumber={this.state.filteredReviews} />
+        <hr />
+        <OverallScores reviews={this.state.reviews} />
+        <TagsSorting
+          tagList={this.state.popularTags}
+          filterByTag={this.filterByTag}
+          reviewNumber={this.state.filteredReviews}
+          filterBySelect={this.filterBySelect} />
         {mappedReviews}
       </div>
     );

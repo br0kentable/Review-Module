@@ -23,7 +23,7 @@ const Review = (props) => {
   }
   return (
     <article className="userAndReview">
-      <User userData={props.user}/>
+      <User userData={props.user} />
       <div id="reviewBody" className="reviewBody">
         <div id="reviewScores">
           <div id="reviewStarsDate" className="reviewStarsAndDate">

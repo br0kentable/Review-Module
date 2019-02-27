@@ -8,8 +8,8 @@ const TagsSorting = (props) => {
   if (tagList.length > 0) {
     filtersSection = tagList.map((tag, i) =>
       <span key={'filterTag' + i} className="filterTag">
-        <input type="checkbox" id={'reviewFilter' + i} onClick={(e) => { e.persist(); props.filterByTag(e) }} />
-        <label id={tag} htmlFor={'reviewFilter' + i}>
+        <input type="checkbox" id={'reviewFilter' + i} onClick={(e) => { e.persist(); props.filterByTag(e); }} />
+        <label id={tag} className="filterTagLabel" htmlFor={'reviewFilter' + i}>
           <span className="filterTagOption">{`${tag} (${props.reviewNumber.filter((review) => review.tags.includes(tag)).length})`}</span>
         </label>
       </span>
@@ -18,10 +18,10 @@ const TagsSorting = (props) => {
 
   return (
     <div className="tagsSorting">
-      <div className="dropdownLabel">Sort by</div>
+      <div className="dropdownFiltersLabel">Sort by</div>
       <div className="dropdownMenu">
-        <select name="dropdownSorting" id="dropdownSorting">
-        {/* <div>
+        <select name="dropdownSorting" id="dropdownSorting" onChange={(e)=>{e.persist(); props.filterBySelect(e);}}>
+          {/* <div>
           <input type="radio" name="newest" id="newest"/>
           <label htmlFor="newest">Newest</label>
         </div> */}
@@ -30,12 +30,12 @@ const TagsSorting = (props) => {
           <option value="Lowest rating">Lowest rating</option>
         </select>
       </div>
-      <div className="filtersLabel">Filters</div>
+      <div className="dropdownFiltersLabel">Filters</div>
       <div className="filtersSection">
         {filtersSection}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default TagsSorting;

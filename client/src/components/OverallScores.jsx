@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const OverallScores = (props) => {
 
   var roundingFunc = (score) => {
-    var calculated = Math.round(((score) / props.reviews.length) * 10) / 10
+    var calculated = Math.round(((score) / props.reviews.length) * 10) / 10;
     return calculated.toString().length === 1 ? calculated + '.0' : calculated.toString();
-  }
+  };
   var overallMain = 0;
   var overallMainBars = {
     1: 0,
@@ -47,18 +47,18 @@ const OverallScores = (props) => {
     if (i >= 1) {
       overallStars.push(
         <FontAwesomeIcon key={'overallScore' + i} icon="star" className="filledScore  starTop" />
-      )
+      );
     } else if (i < 1 && i >= 0.25) {
       overallStars.push(
         <FontAwesomeIcon key={'overallScore' + i} icon="star-half-alt" className="filledScore starTop" />
-      )
+      );
     }
   }
 
   for (var i = 0; i < (5 - Math.ceil(overallMain)); i++) {
     overallStars.push(
       <FontAwesomeIcon key={'overallScore' + i} icon={["far", "star"]} className="emptyScore starTop" />
-    )
+    );
   }
 
   return (
@@ -90,24 +90,26 @@ const OverallScores = (props) => {
             <div className="fsavScore">{overallAmbience}</div>
             <div className="fsavLabel">{'Ambience'}</div>
           </div>
-          <div className="fsavItem">
+          <div className="fsavItemValue">
             <div className="fsavScore">{overallValue}</div>
             <div className="fsavLabel">{'Value'}</div>
           </div>
         </div>
         <div className="overallScoresNoise noiseRecommend">
-          <div className="overScoresNoiseIcon"></div>
-          <div className="overallScoresNoiseScore">
-            <FontAwesomeIcon icon="signal" className="noiseIcon" />
+          <div className="overallScoresNoiseIcon">
+            <FontAwesomeIcon icon="signal" className="noiseIcon" /></div>
+          <div className="overallScoresNoiseRecommendLabel">
             {` Noise · `}
             <span className="overallScoresNoiseScore">{overallNoise}</span>
           </div>
         </div>
-        <div className="overallScoreRecommend noiseRecommend">
-          <div className="overallScoresRecommendScoreLabel">
+        <div className="overallScoresRecommend noiseRecommend">
+          <div className="overallScoresRecommendInner">
             <FontAwesomeIcon icon={["far", "thumbs-up"]} className="thumbIcon" />
-            {` ${overallRecommend}% of people `}
-            <span className="overallScoresRecommendLabel">{'would recommend it to a friend'}</span>
+            <div className="overallScoresNoiseRecommendLabel">
+              {` ${overallRecommend}% of people `}
+              <span className="overallScoresRecommendLabel">{'would recommend it to a friend'}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -146,7 +148,7 @@ const OverallScores = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default OverallScores;

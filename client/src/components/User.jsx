@@ -15,8 +15,8 @@ const User = (props) => {
         <span className="userLocation">{props.userData.location}</span>
         <div className="userReviewNumberOuter">
           <span className="userReviewNumberInner">
-          <FontAwesomeIcon icon={["far", "comment-alt"]} className="commentsCount" />
-          {` ${props.userData.reviewNumber} Reviews`}
+            <FontAwesomeIcon icon={["far", "comment-alt"]} className="commentsCount" />
+            {` ${props.userData.reviewNumber} Reviews`}
           </span>
         </div>
       </div>
