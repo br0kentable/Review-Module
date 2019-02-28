@@ -45,8 +45,8 @@ class App extends React.Component {
     this.scrollToFilter = this.scrollToFilter.bind(this);
   }
 
-  scrollToFilter(){
-    document.getElementById('tagsSorting').scrollIntoView({block: 'start', behavior: "smooth"});
+  scrollToFilter() {
+    document.getElementById('tagsSorting').scrollIntoView({ block: 'start', behavior: "smooth" });
   }
 
   filterByTag(e) {
@@ -121,6 +121,8 @@ class App extends React.Component {
       })
   }
 
+
+
   render() {
     var mappedReviews = this.state.filteredReviews.map((review, i) =>
       <Review
@@ -133,20 +135,33 @@ class App extends React.Component {
         text={review.text}
         user={review.user} />
     );
-    return (
-      <div className="reviewModuleContainer container">
-        <h3>What {this.state.reviews.length} People Are Saying</h3>
-        <hr />
-        <OverallScores reviews={this.state.reviews} />
-        <TagsSorting
-          tagList={this.state.popularTags}
-          filterByTag={this.filterByTag}
-          reviewNumber={this.state.filteredReviews}
-          filterBySelect={this.filterBySelect}
-          scrollToFilter={this.scrollToFilter} />
-        {mappedReviews}
-      </div>
-    );
+
+    if (this.state.reviews.length === 0) {
+      return (
+        <div className="reviewModuleContainer container">
+          <h3>{'Be the First to Review This Restaurant'}
+            <span className="writeReview">{'Write a review'}</span>
+          </h3>
+          <div className="userAndReview">
+            {'At present, Curry House Restaurant has no reviews. Please add a review after your dining experience to help others make a decision about where to eat.'}
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="reviewModuleContainer container">
+          <h3>What {this.state.reviews.length} People Are Saying</h3>
+          <OverallScores reviews={this.state.reviews} />
+          <TagsSorting
+            tagList={this.state.popularTags}
+            filterByTag={this.filterByTag}
+            reviewNumber={this.state.filteredReviews}
+            filterBySelect={this.filterBySelect}
+            scrollToFilter={this.scrollToFilter} />
+          {mappedReviews}
+        </div>
+      );
+    }
   }
 }
 
