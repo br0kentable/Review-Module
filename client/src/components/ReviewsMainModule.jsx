@@ -9,7 +9,7 @@ import Review from './Review.jsx';
 import TagsSorting from './TagsSorting.jsx';
 import OverallScores from './OverallScores.jsx';
 
-class App extends React.Component {
+class ReviewsMainModule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -165,5 +165,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
-
+export default ReviewsMainModule;
