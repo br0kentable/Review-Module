@@ -50,14 +50,14 @@ const OverallScores = (props) => {
       );
     } else if (i < 1 && i >= 0.25) {
       overallStars.push(
-        <FontAwesomeIcon key={'overallScore' + i} icon="star-half-alt" className="filledScore starTop" />
+        <FontAwesomeIcon key={'overallScorehalf' + i} icon="star-half-alt" className="filledScore starTop" />
       );
     }
   }
 
   for (var i = 0; i < (5 - Math.ceil(overallMain)); i++) {
     overallStars.push(
-      <FontAwesomeIcon key={'overallScore' + i} icon={["far", "star"]} className="emptyScore starTop" />
+      <FontAwesomeIcon key={'overallScoreEmpty' + i} icon={["far", "star"]} className="emptyScore starTop" />
     );
   }
 

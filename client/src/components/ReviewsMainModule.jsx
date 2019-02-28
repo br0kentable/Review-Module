@@ -93,7 +93,7 @@ class ReviewsMainModule extends React.Component {
 
 
   componentDidMount() {
-    axios.get('/api/restaurants/G5QsVOVBfk/reviews')
+    axios.get('http://localhost:1337/api/restaurants/G5QsVOVBfk/reviews')
       .then((result) => {
 
         var allTags = [];

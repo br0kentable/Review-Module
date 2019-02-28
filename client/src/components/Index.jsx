@@ -2,4 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReviewsMainModule from './ReviewsMainModule.jsx';
 
-ReactDOM.render(<ReviewsMainModule/>, document.getElementById('ReviewsMainModule'));
+var standalone = document.getElementById('ReviewsMainModule');
+var proxy = document.getElementById('ReviewsMainModuleProxy');
+
+if (standalone) {
+  ReactDOM.render(<ReviewsMainModule/>, standalone);
+} else {
+  ReactDOM.render(<ReviewsMainModule/>, proxy);
+}
