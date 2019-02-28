@@ -8,8 +8,11 @@ const Review = (props) => {
     stars.push(<FontAwesomeIcon key={'score' + i} icon="star" className="filledScore" />);
   }
   for (var i = 0; i < (5 - props.scoreOverall); i++) {
-    stars.push(<FontAwesomeIcon key={'emptyScore' + i} icon="star" className="emptyScore" />);
+    stars.push(<FontAwesomeIcon key={'emptyScore' + i} icon={["far", "star"]} className="emptyScore" />);
   }
+
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
   var currentDate = props.date;
   var currentDateArray = props.date.split('-');
   var today = new Date();
@@ -20,10 +23,12 @@ const Review = (props) => {
     currentDate = 'Dined a day ago';
   } else if (dinedOn === 0) {
     currentDate = 'Dined today';
+  } else {
+    currentDate = `Dined on ${months[Number(currentDateArray[1])]} ${Number(currentDateArray[2])}, ${currentDateArray[0]}`
   }
   return (
     <article className="userAndReview">
-      <User userData={props.user}/>
+      <User userData={props.user} />
       <div id="reviewBody" className="reviewBody">
         <div id="reviewScores">
           <div id="reviewStarsDate" className="reviewStarsAndDate">
