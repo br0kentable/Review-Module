@@ -15,7 +15,7 @@ class App extends React.Component {
     this.state = {
       reviews: [{
         "id": 1, "userId": 42, "restaurantId": "thfUjkN4Tv", "reviewDate": "2019-02-21", "text": "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.", "tags": "Vibrant Bar Scene, Organic, Quick Bite, Open Kitchen, Cellar, Couples, Vegan", "overallScore": 1, "foodScore": 3, "serviceScore": 3, "ambienceScore": 5, "valueScore": 4, "noise": 1, "recommend": "N", "createdAt": "2019-02-15T20:26:17.000Z", "updatedAt": "2019-02-15T20:26:17.000Z",
-        "user": { "id": 38, "username": "MikeS", "location": "Seattle", "vip": "Yes", "reviewNumber": 10 }
+        "user": { "id": 38, "username": "BrokenTableDiner", "location": "Seattle", "vip": "Yes", "reviewNumber": 10 }
       },
       {
         "id": 2, "userId": 34, "restaurantId": "thfUjkN4Tv", "reviewDate": "2019-02-22", "text": "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.", "tags": "Vibrant Bar Scene, Organic, Quick Bite, Open Kitchen, Couples, Vegan", "overallScore": 4, "foodScore": 3, "serviceScore": 3, "ambienceScore": 5, "valueScore": 4, "noise": 1, "recommend": "Y", "createdAt": "2019-02-15T20:26:17.000Z", "updatedAt": "2019-02-15T20:26:17.000Z",
@@ -23,11 +23,11 @@ class App extends React.Component {
       },
       {
         "id": 3, "userId": 32, "restaurantId": "thfUjkN4Tv", "reviewDate": "2019-02-22", "text": "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.", "tags": "Vibrant Bar Scene, Organic, Quick Bite, Open Kitchen, Couples, Vegan", "overallScore": 5, "foodScore": 4, "serviceScore": 3, "ambienceScore": 5, "valueScore": 4, "noise": 1, "recommend": "Y", "createdAt": "2019-02-15T20:26:17.000Z", "updatedAt": "2019-02-15T20:26:17.000Z",
-        "user": { "id": 32, "username": "MikeR", "location": "Seattle", "vip": "No", "reviewNumber": 7 }
+        "user": { "id": 32, "username": "MikeS", "location": "Seattle", "vip": "No", "reviewNumber": 7 }
       }],
       filteredReviews: [{
         "id": 1, "userId": 42, "restaurantId": "thfUjkN4Tv", "reviewDate": "2019-02-21", "text": "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.", "tags": "Vibrant Bar Scene, Organic, Quick Bite, Open Kitchen, Cellar, Couples, Vegan", "overallScore": 1, "foodScore": 3, "serviceScore": 3, "ambienceScore": 5, "valueScore": 4, "noise": 1, "recommend": "N", "createdAt": "2019-02-15T20:26:17.000Z", "updatedAt": "2019-02-15T20:26:17.000Z",
-        "user": { "id": 38, "username": "MikeS", "location": "Seattle", "vip": "Yes", "reviewNumber": 10 }
+        "user": { "id": 38, "username": "BrokenTableDiner", "location": "Seattle", "vip": "Yes", "reviewNumber": 10 }
       },
       {
         "id": 2, "userId": 34, "restaurantId": "thfUjkN4Tv", "reviewDate": "2019-02-22", "text": "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.", "tags": "Vibrant Bar Scene, Organic, Quick Bite, Open Kitchen, Couples, Vegan", "overallScore": 4, "foodScore": 3, "serviceScore": 3, "ambienceScore": 5, "valueScore": 4, "noise": 1, "recommend": "Y", "createdAt": "2019-02-15T20:26:17.000Z", "updatedAt": "2019-02-15T20:26:17.000Z",
@@ -35,7 +35,7 @@ class App extends React.Component {
       },
       {
         "id": 3, "userId": 32, "restaurantId": "thfUjkN4Tv", "reviewDate": "2019-02-22", "text": "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.", "tags": "Vibrant Bar Scene, Organic, Quick Bite, Open Kitchen, Couples, Vegan", "overallScore": 5, "foodScore": 4, "serviceScore": 3, "ambienceScore": 5, "valueScore": 4, "noise": 1, "recommend": "Y", "createdAt": "2019-02-15T20:26:17.000Z", "updatedAt": "2019-02-15T20:26:17.000Z",
-        "user": { "id": 32, "username": "MikeR", "location": "Seattle", "vip": "No", "reviewNumber": 7 }
+        "user": { "id": 32, "username": "MikeS", "location": "Seattle", "vip": "No", "reviewNumber": 7 }
       }],
       popularTags: ['Organic', 'Cellar', 'Not Valid'],
       checkedTags: []
@@ -87,9 +87,34 @@ class App extends React.Component {
   }
 
 
-  // componentDidMount(){
-  //   axios.get('/api/restaurants')
-  // }
+  componentDidMount() {
+    axios.get('/api/restaurants/G5QsVOVBfk/reviews')
+      .then((result) => {
+
+        var allTags = [];
+        for (var i = 0; i < result.data.length; i++) {
+          allTags = allTags.concat(result.data[i].tags.split(', '))
+        }
+
+        var popTags = {};
+        for (var i = 0; i < allTags.length; i++) {
+          if (!popTags[allTags[i]]) {
+            popTags[allTags[i]] = 1;
+          } else {
+            popTags[allTags[i]]++
+          }
+        }
+
+        popTags = Object.keys(popTags)
+          .sort((a, b) => b - a);
+
+        this.setState({
+          reviews: result.data,
+          filteredReviews: result.data,
+          popularTags: popTags
+        });
+      })
+  }
 
   render() {
     var mappedReviews = this.state.filteredReviews.map((review, i) =>
