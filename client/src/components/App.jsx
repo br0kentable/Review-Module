@@ -42,6 +42,11 @@ class App extends React.Component {
     };
     this.filterByTag = this.filterByTag.bind(this);
     this.filterBySelect = this.filterBySelect.bind(this);
+    this.scrollToFilter = this.scrollToFilter.bind(this);
+  }
+
+  scrollToFilter(){
+    document.getElementById('tagsSorting').scrollIntoView({block: 'start', behavior: "smooth"});
   }
 
   filterByTag(e) {
@@ -137,7 +142,8 @@ class App extends React.Component {
           tagList={this.state.popularTags}
           filterByTag={this.filterByTag}
           reviewNumber={this.state.filteredReviews}
-          filterBySelect={this.filterBySelect} />
+          filterBySelect={this.filterBySelect}
+          scrollToFilter={this.scrollToFilter} />
         {mappedReviews}
       </div>
     );
