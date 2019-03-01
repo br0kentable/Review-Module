@@ -42,6 +42,7 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.9.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "grunt": "^1.0.3",
     "jest": "^24.1.0",
     "supertest": "^3.4.2",
     "webpack": "^4.29.4",
