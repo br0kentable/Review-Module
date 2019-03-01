@@ -6,10 +6,7 @@ const db = require('./db.js');
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../public/dist')));
-
-app.get('/', (req, res) => {
-  res.send('test');
-});
+app.use('/restaurants/:restaurantId/reviews', express.static(path.join(__dirname, '../public/dist')));
 
 app.get('/api/users', (req, res) => {
   db.User.findAll()
