@@ -64,7 +64,6 @@ class ReviewsMainModule extends React.Component {
   }
 
   filterBySelect(e) {
-    console.log(e.target.value);
     if (e.target.value === 'Lowest rating') {
       this.setState({
         filteredReviews: this.state.filteredReviews.sort((a, b) => a.overallScore - b.overallScore)
