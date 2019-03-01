@@ -93,7 +93,9 @@ class ReviewsMainModule extends React.Component {
 
 
   componentDidMount() {
-    axios.get('http://localhost:1337/api/restaurants/G5QsVOVBfk/reviews')
+    var restaurantId = location.pathname.split('/')[2];
+
+    axios.get(`http://localhost:1337/api/restaurants/${restaurantId}/reviews`)
       .then((result) => {
 
         var allTags = [];
@@ -143,7 +145,7 @@ class ReviewsMainModule extends React.Component {
             <span className="writeReview">{'Write a review'}</span>
           </h3>
           <div className="userAndReview">
-            {'At present, Curry House Restaurant has no reviews. Please add a review after your dining experience to help others make a decision about where to eat.'}
+            {'At present, this restaurant has no reviews. Please add a review after your dining experience to help others make a decision about where to eat.'}
           </div>
         </div>
       );
