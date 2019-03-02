@@ -1,11 +1,19 @@
 // const config = require('../config.json');
 require('dotenv').config();
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('Review_Module', process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-  host: 'localhost',
-  dialect: 'mysql',
-  logging: false
-});
+const sequelize = new Sequelize(
+  process.env.RDS_DB_NAME,
+  process.env.RDS_USERNAME,
+  process.env.RDS_PASSWORD,
+  {
+    host: process.env.RDS_HOSTNAME,
+    port: process.env.RDS_PORT,
+    dialect: 'mysql',
+    dialectOptions: {
+        ssl:'Amazon RDS'
+    },
+    logging: false
+  });
 
 const Review = sequelize.define('review', {
   userId: Sequelize.INTEGER,
