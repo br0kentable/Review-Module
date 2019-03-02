@@ -1,6 +1,7 @@
-const config = require('../config.json');
+// const config = require('../config.json');
+require('dotenv').config();
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('Review_Module', config.database.username, config.database.password, {
+const sequelize = new Sequelize('Review_Module', process.env.DB_USERNAME, process.env.DB_PASSWORD, {
   host: 'localhost',
   dialect: 'mysql',
   logging: false
