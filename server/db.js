@@ -1,10 +1,12 @@
-const config = require('../config.json');
+require('dotenv').config();
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('Review_Module', config.database.username, config.database.password, {
-  host: 'localhost',
-  dialect: 'mysql',
-  logging: false
-});
+const sequelize = new Sequelize('Review_Module', process.env.RDS_USERNAME, process.env.RDS_PASSWORD,
+  {
+    host: process.env.RDS_HOSTNAME,
+    port: process.env.RDS_PORT,
+    dialect: 'mysql',
+    logging: false
+  });
 
 const Review = sequelize.define('review', {
   userId: Sequelize.INTEGER,
@@ -42,15 +44,6 @@ sequelize
   .catch(err => {
     console.error('Unable to connect to database', err);
   })
-
-
-// User.sync({force: true}).then(() => {
-//   console.log('User table synced');
-// });
-
-// Review.sync({force: true}).then(() => {
-//   console.log('Review table synced');
-// });
 
 module.exports.sequelize = sequelize;
 module.exports.Review = Review;
