@@ -8,7 +8,7 @@ const Review = (props) => {
     stars.push(<FontAwesomeIcon key={'score' + i} icon="star" className="filledScore" />);
   }
   for (var i = 0; i < (5 - props.scoreOverall); i++) {
-    stars.push(<FontAwesomeIcon key={'emptyScore' + i} icon={["far", "star"]} className="emptyScore" />);
+    stars.push(<FontAwesomeIcon key={'emptyScore' + i} icon={['far', 'star']} className="emptyScore" />);
   }
 
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -17,7 +17,7 @@ const Review = (props) => {
   var currentDateArray = props.date.split('-');
   var today = new Date();
   var dinedOn = today.getDate() - Number(currentDateArray[2]);
-  
+
   if (today.getFullYear() - Number(currentDateArray[0]) === 0 && (today.getMonth() + 1) - Number(currentDateArray[1]) === 0 && dinedOn <= 7 && dinedOn > 1) {
     currentDate = `Dined ${dinedOn} days ago`;
   } else if (dinedOn === 1) {
@@ -25,7 +25,7 @@ const Review = (props) => {
   } else if (dinedOn === 0) {
     currentDate = 'Dined today';
   } else {
-    currentDate = `Dined on ${months[Number(currentDateArray[1])]} ${Number(currentDateArray[2])}, ${currentDateArray[0]}`
+    currentDate = `Dined on ${months[Number(currentDateArray[1])]} ${Number(currentDateArray[2])}, ${currentDateArray[0]}`;
   }
 
   return (

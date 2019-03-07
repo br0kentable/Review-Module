@@ -8,6 +8,16 @@ const sequelize = new Sequelize('Review_Module', process.env.RDS_USERNAME, proce
     logging: false
   });
 
+const User = sequelize.define('user', {
+  username: {
+    type: Sequelize.STRING,
+    defaultValue: 'BrokenTableDiner'
+  },
+  location: Sequelize.STRING,
+  vip: Sequelize.STRING,
+  reviewNumber: Sequelize.INTEGER
+});
+
 const Review = sequelize.define('review', {
   userId: Sequelize.INTEGER,
   restaurantId: Sequelize.STRING,
@@ -23,27 +33,8 @@ const Review = sequelize.define('review', {
   recommend: Sequelize.STRING
 });
 
-const User = sequelize.define('user', {
-  username: {
-    type: Sequelize.STRING,
-    defaultValue: 'BrokenTableDiner'
-  },
-  location: Sequelize.STRING,
-  vip: Sequelize.STRING,
-  reviewNumber: Sequelize.INTEGER
-});
-
 User.hasMany(Review, { foreignKey: 'userId' });
 Review.belongsTo(User, { foreignKey: 'userId' });
-
-sequelize
-  .sync()
-  .then(() => {
-    console.log('Connected to database, tables synced');
-  })
-  .catch(err => {
-    console.error('Unable to connect to database', err);
-  })
 
 module.exports.sequelize = sequelize;
 module.exports.Review = Review;

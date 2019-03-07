@@ -57,7 +57,7 @@ const OverallScores = (props) => {
 
   for (var i = 0; i < (5 - Math.ceil(overallMain)); i++) {
     overallStars.push(
-      <FontAwesomeIcon key={'overallScoreEmpty' + i} icon={["far", "star"]} className="emptyScore starTop" />
+      <FontAwesomeIcon key={'overallScoreEmpty' + i} icon={['far', 'star']} className="emptyScore starTop" />
     );
   }
 
@@ -105,7 +105,7 @@ const OverallScores = (props) => {
         </div>
         <div className="overallScoresRecommend noiseRecommend">
           <div className="overallScoresRecommendInner">
-            <FontAwesomeIcon icon={["far", "thumbs-up"]} className="thumbIcon" />
+            <FontAwesomeIcon icon={['far', 'thumbs-up']} className="thumbIcon" />
             <div className="overallScoresNoiseRecommendLabel">
               {` ${overallRecommend}% of people `}
               <span className="overallScoresRecommendLabel">{'would recommend it to a friend'}</span>
