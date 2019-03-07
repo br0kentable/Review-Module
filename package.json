@@ -1,8 +1,8 @@
 {
   "name": "review_module",
-  "version": "",
-  "description": "",
-  "author": "",
+  "version": "1.0.0",
+  "description": "Review module for brokenTable",
+  "author": "Alvin Kwong",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
@@ -13,6 +13,7 @@
     ]
   },
   "scripts": {
+    "postinstall": "node seeding/checkforDatabase.js",
     "start": "nodemon server/server.js",
     "build": "webpack --config webpack.config.js --watch",
     "test": "jest",

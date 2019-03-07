@@ -36,9 +36,17 @@ var insertData = (username) => {
         counterReview++;
         insertData(seedingData.userNameFull());
       });
-  } else if (counterUser >= 50 && counterReview >= 150){
+  } else if (counterUser >= 50 && counterReview >= 150) {
     process.exit();
   }
 };
 
-insertData(seedingData.userNameFull());
+db.sequelize
+  .sync({ force: true })
+  .then(() => {
+    insertData(seedingData.userNameFull());
+  })
+  .then(() => console.log('Connected to database, tables synced'))
+  .catch(err => {
+    console.error('Unable to connect to database', err);
+  });
