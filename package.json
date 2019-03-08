@@ -14,7 +14,7 @@
   },
   "scripts": {
     "postinstall": "node seeding/checkforDatabase.js",
-    "start": "nodemon server/server.js",
+    "start": "node server/server.js",
     "build": "webpack --config webpack.config.js --watch",
     "test": "jest",
     "seed": "node seeding/seedingScript.js"
