@@ -1,4 +1,4 @@
-# Project Name
+# Review-Module
 
 > This is the reviews section of a project to recreate the look of a restaurant page from OpenTable.com
 
