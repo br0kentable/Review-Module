@@ -35,8 +35,7 @@
 - Also creates the appropriate database 
 
 ```
-npm install -g webpack
-npm install
+npm install webpack
 ```
 
 ##### Create Webpack bundle
