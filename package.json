@@ -33,7 +33,7 @@
     "npm": "^6.8.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "sequelize": "^4.42.0"
+    "sequelize": "^5.15.1"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
